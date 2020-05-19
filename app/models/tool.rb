@@ -6,5 +6,5 @@ class Tool < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :price, presence: true
-  validates :categories, inclusion: { in: CATEGORIES }
+  validates :category, inclusion: { in: CATEGORIES }
 end
