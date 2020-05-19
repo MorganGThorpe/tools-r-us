@@ -1,7 +1,8 @@
 class ToolsController < ApplicationController
-  before_action :set_tool
+  before_action :set_tool, only: [:show, :edit, :update, :destroy]
+
   def index
-    @tool = Tool.all
+    @tools = Tool.all
   end
 
   def new
@@ -42,8 +43,6 @@ class ToolsController < ApplicationController
   end
 
   def set_tool
-    if params[:id]
       @tool = Tool.find(params[:id])
-    end
   end
 end
