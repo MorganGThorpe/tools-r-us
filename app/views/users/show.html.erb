@@ -1,0 +1,103 @@
+<div class="container">
+
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Bookings</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Listings</a>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active blue-background" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+      <div class="bookings">
+
+        <div class="card profile-card" >
+          <div class="card-header">
+            <h1>Welcome <%= @user.first_name %></h1>
+          </div>
+          <div class="card-body d-flex justify-content-around align-items-center">
+            <div class="user-info">
+              <h5 class="card-title">Passionate gardener living in Beirut</h5>
+              <p class="card-text"> Contact information:</p>
+              <ul>
+                <li> EMAIL: <%= @user.email %></li>
+                <li> NAME: <%= @user.first_name %> <%= @user.last_name %></li>
+              </ul>
+            </div>
+            <%= cl_image_tag @user.avatar.key, alt: "user-avatar", width: 200, height: 200, crop: :fill %>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h4>Upcoming bookings</h4>
+          </div>
+          <div class="card-body">
+            <% @bookings.each do |booking| %>
+              <div class="bookings-card">
+                <%= image_tag "tool.jpg", alt: "alttext", width: 300, height: 200 %>
+                <div class="card-text">
+                  <p><%= booking.booking_cost %> </p>
+                  <p><%= booking.start_date.strftime("%A, %b %d") %> </p>
+                  <p><%= booking.end_date.strftime("%A, %b %d") %> </p>
+                  <p><%= booking.tool.name %> </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade red-background" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+      <div class="tools">
+
+        <div class="card profile-card" >
+          <div class="card-header">
+            <h1>Welcome <%= @user.first_name %></h1>
+          </div>
+          <div class="card-body d-flex justify-content-around align-items-center">
+            <div class="user-info">
+              <h5 class="card-title">Passionate gardener living in Beirut</h5>
+              <p class="card-text"> Contact information:</p>
+              <ul>
+                <li> EMAIL: <%= @user.email %></li>
+                <li> NAME: <%= @user.first_name %> <%= @user.last_name %></li>
+              </ul>
+            </div>
+            <%= cl_image_tag @user.avatar.key, alt: "user-avatar", width: 200, height: 200, crop: :fill %>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h4>Listed tools</h4>
+          </div>
+          <div class="card-body">
+
+            <% @tools.each do |tool| %>
+              <div class="bookings-card">
+                <%= image_tag "hammer2.jpg", alt: "alttext", width: 300, height: 200 %>
+                <div class="card-text">
+                  <p><%= tool.name %> </p>
+                  <p><%= tool.description %> </p>
+                  <p><%= tool.price_per_day %> </p>
+                  <p><%= tool.active %> </p>
+                  <p><%= tool.categories %> </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
