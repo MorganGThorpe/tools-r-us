@@ -3,8 +3,8 @@ class Tool < ApplicationRecord
 
   CATEGORIES = ["Garden", "Woodwork", "Building", "General Purpose", "Warehouse", "Motorised"]
 
-  vaidates :name, presence: true
-  vaidates :description, presence: true
-  vaidates :price, presence: true
-  vaidates :categories, inclusion: { in: CATEGORIES }
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :price, presence: true
+  validates :categories, inclusion: { in: CATEGORIES }
 end
