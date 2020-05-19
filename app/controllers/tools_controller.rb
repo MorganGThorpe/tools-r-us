@@ -11,7 +11,7 @@ class ToolsController < ApplicationController
   def create
     @tool = Tool.create(tool_params)
     if @tool.save
-      redirect_to_tool_path(@tool)
+      redirect_to tool_path(@tool)
     else
       render :new
     end
@@ -27,12 +27,12 @@ class ToolsController < ApplicationController
 
   def update
     @tool.update(tool_params)
-    redirect_to_tool_path(@tool)
+    redirect_to tool_path(@tool)
   end
 
   def destroy
     @tool.destroy
-    redirect_to_root_path
+    redirect_to tools_path
   end
 
   private
