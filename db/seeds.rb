@@ -3,5 +3,17 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+if Rails.env.development?
+  Booking.destroy_all
+  Tool.destroy_all
+end
+
+
+Tool.create(
+    name: 'Garden Hoe', 
+    description: 'This is a lovely garden hoe that I use to hoe my garden.', 
+    price_per_day: 5.55,  
+    user: User.last,
+    category: "Garden"
+)
