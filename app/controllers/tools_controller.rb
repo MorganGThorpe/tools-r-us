@@ -1,8 +1,13 @@
 class ToolsController < ApplicationController
-  before_action :set_tool, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: :index
+  before_action :set_tool, only: [:show, :edit, :destroy, :update ]
 
   def index
-    @tools = Tool.all
+    if  params[:tool][:name].present?
+      @tools = Tool.where("name ILIKE ?", "%#{params[:tool][:name]}%")
+    else
+      @tools = Tool.all
+    end
   end
 
   def new
@@ -10,7 +15,7 @@ class ToolsController < ApplicationController
   end
 
   def create
-    @tool = Tool.create(tool_params)
+    @tool = Tool.new(tool_params)
     if @tool.save
       redirect_to tool_path(@tool)
     else
