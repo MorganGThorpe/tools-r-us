@@ -3,7 +3,7 @@ class ToolsController < ApplicationController
   before_action :set_tool, only: [:show, :edit, :destroy, :update ]
 
   def index
-    if  params[:tool][:name].present?
+    if  params.dig(:tool, :name).present?
       @tools = Tool.where("name ILIKE ?", "%#{params[:tool][:name]}%")
     else
       @tools = Tool.all
