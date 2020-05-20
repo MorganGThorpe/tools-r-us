@@ -1,4 +1,6 @@
 <%= simple_form_for Tool.new, method: :get do |f| %>
-  <%= f.input :name %>
-  <%= f.submit "search tool", class: "btn btn-primary" %>
+  <div class="d-flex justify-content-between mb-3">
+    <%= f.input :name, label:false, placeholder:"Search for a tool", wrapper_html:{class:"flex-grow-1 mb-0 mr-2"} %>
+    <%= f.submit "Go!", class: "btn btn-primary" %>
+  </div>
 <% end %>
