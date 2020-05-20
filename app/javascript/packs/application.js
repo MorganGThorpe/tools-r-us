@@ -26,7 +26,7 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-import { functName } from './user';
+// import { functName } from './user';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
