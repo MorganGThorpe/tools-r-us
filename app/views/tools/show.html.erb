@@ -9,17 +9,13 @@
         <div class="d-inline-block">
           <p>·  <u>Stoke Newington, London, UK</u></p>
         </div>
-        <div class="d-inline-block float-right">
-          <button type="button" class="btn-treehouse"><%= @tool.category %></button>
+        <div class="d-inline-block float-right mt-0">
+          <p class="tag mt-0"><%= @tool.category %></p>  
         </div>
       </div>
       <img src="https://images.ctfassets.net/zma7thmmcinb/7lj9qlwKbgzj7avuaYYWj2/5da67aa7854a4c401f63af502227f572/choosing-the-right-garden-hoe-pv.jpg" alt="Garden Hoe" width="100%" height="400">
       <div class="mt-5">
-        <p>I'm baby mumblecore prism viral put a bird on it lyft kale chips man bun affogato. Wayfarers ugh hella organic, four dollar toast bitters irony. Tumblr offal mlkshk meggings, before they sold out locavore blog craft beer fashion axe gochujang. Bespoke meggings chillwave plaid forage, humblebrag sustainable subway tile fashion axe pug schlitz wayfarers la croix. Snackwave farm-to-table typewriter chambray kinfolk raclette butcher tumeric sustainable vinyl godard.	<br>
-        <br>
-        Helvetica food truck whatever authentic. Pug brooklyn small batch, taiyaki adaptogen truffaut keffiyeh palo santo drinking vinegar fashion axe cold-pressed food truck polaroid ethical. Pug asymmetrical af, unicorn enamel pin coloring book lo-fi ethical poutine green juice dreamcatcher keytar 8-bit. Forage edison bulb kickstarter wolf ethical helvetica. Chartreuse you probably haven't heard of them shabby chic banh mi raclette fanny pack keytar.	<br>
-        <br>
-        Dummy text? More like dummy thicc text, amirite?</p>
+        <p><%= @tool.description %></p>
       </div>
     </div>
     <div class="col-xs-12 col-lg-5">
@@ -27,13 +23,13 @@
         <div class="card mt-5 w-100">
           <div id="price" class="container d-flex justify-content-center mt-5">
             <div class="d-inline-block">
-              <h1>£30</h1> 
+              <h1>£<%= @tool.price_per_day %></h1> 
             </div>
             <div class="d-inline-block mt-4">
               <p>/ a day</p>
             </div>
           </div>
-          <button type="button" class="btn btn-primary w-30">Rent This Tool</button>
+          <button type="button" class="btn btn-primary btn-round-lg">Rent This Tool</button>
           <hr/>
           <span class="text-muted ml-4">About the Seller</span>
           <div class="media"> <img src="https://townsquare.media/site/696/files/2020/03/Bob-the-builder.png?w=980&q=75" class="mr-3" height="80">
