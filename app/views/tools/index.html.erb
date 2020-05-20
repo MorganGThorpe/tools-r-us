@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-sm-6 m-0 p-0 w-100">
       <form class="form-inline ">
         <div class="form-group col-8">
-          <input type="text" class="form-control w-100" id="search" placeholder="Enter the tool you want to look for here">
+          <input type="text" class="form-control w-100" id="search" placeholder="Enter the tool you want to look for here" value="The greatest shovel">
         </div>
         <div class="form-group col-4">
           <button type="submit" class="btn btn-primary w-100">Search</button>
@@ -31,56 +31,40 @@
         </div>
       </div>
       <div class="row m-2" >
-        <div class="col-sm-6">
-          <div class="card mb-4 mx-0">
-            <img src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" class="card-img-top img-fluid">
-            <div class="p-3">
-              <h5>Tool name</h5>
-              <h6>Tool description</h6>
-              <p>Tool owner description</p>
+        <% @tools.each do |tool| %>
+          <div class="col-sm-6 p-0">
+            <div class="card mb-4 mx-0 p-0">
+              <img src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" class="card-img-top img-fluid">
+              <div class="py-3 pl-3 row">
+                <div class="col-8">
+                  <h5><%= tool.name %></h5>
+                  <h6><%= tool.description %></h6>
+                </div>
+                <div class="col-3 text-center my-auto mr-2">
+                  <img class="rounded-circle w-50 mb-3"src=<%= tool.owner.picture %>>
+                  <h5>$ <%= tool.price_per_day %>/day</h5>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card mb-4 mx-0">
-            <img src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" class="card-img-top img-fluid">
-            <div class="p-3">
-              <h5>Tool name</h5>
-              <h6>Tool description</h6>
-              <p>Tool owner description</p>
+        <% end %>
+        <div class="col-sm-6 p-0">
+            <div class="card mb-4 mx-0 p-0">
+              <img src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" class="card-img-top img-fluid">
+              <div class="py-3 pl-3 row">
+                <div class="col-7 my-auto">
+                  <h5>Placeholder Tool Name</h5>
+                  <h6>Placeholder no-seed Tool Description</h6>
+                </div>
+                <div class="col-4 text-center my-auto mr-2">
+                  <div class="rounded-circle">
+                    <img class="rounded-circle w-50 mb-3" src="https://s3.amazonaws.com/media.muckrack.com/profile/images/7054564/zachary-drumm-owner-tooltcom.jpeg.256x256_q100_crop-smart.jpg" alt="Photo of the owner of the tools">
+                  </div>
+                  <h6>$ 75/day</h6>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card mb-4 mx-0">
-            <img src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" class="card-img-top img-fluid">
-            <div class="p-3">
-              <h5>Tool name</h5>
-              <h6>Tool description</h6>
-              <p>Tool owner description</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card mb-4 mx-0">
-            <img src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" class="card-img-top img-fluid">
-            <div class="p-3">
-              <h5>Tool name</h5>
-              <h6>Tool description</h6>
-              <p>Tool owner description</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card mb-4 mx-0">
-            <img src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" class="card-img-top img-fluid">
-            <div class="p-3">
-              <h5>Tool name</h5>
-              <h6>Tool description</h6>
-              <p>Tool owner description</p>
-            </div>
-          </div>
-        </div>
       </div>
 
     </div>
