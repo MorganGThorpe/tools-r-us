@@ -2,15 +2,15 @@
 
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Bookings</a>
+      <a class="nav-link <%= 'active' if params[:tools].blank? %>" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Bookings</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Listings</a>
+      <a class="nav-link <%= 'active' if params[:tools].present? %>" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Listings</a>
     </li>
   </ul>
 
   <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active blue-background" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    <div class="tab-pane fade <%= 'active show' if params[:tools].blank? %> blue-background" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
       <div class="bookings">
 
         <div class="card" >
@@ -21,13 +21,7 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <p>Beirut</p>
                 <div class="rating d-flex">
-                  <p>RATING</p>
-                  <p>8,6</p>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
+                  <p>          ★ 4.65 (8)</p> 
                 </div>
               </div>
             </div>
@@ -69,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="tab-pane fade red-background" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <div class="tab-pane fade red-background <%= 'active show' if params[:tools].present? %>" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
       <div class="tools">
 
         <div class="card" >
@@ -80,13 +74,7 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <p>Beirut</p>
                 <div class="rating d-flex">
-                  <p>RATING</p>
-                  <p>8,6</p>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
+                  <p>★ 4.65 (8)</p> 
                 </div>
               </div>
             </div>
