@@ -1,7 +1,8 @@
 class ToolsController < ApplicationController
-  before_action :set_tool
+  before_action :set_tool, only: [:show, :edit, :update, :destroy]
+
   def index
-    @tool = Tool.all
+    @tools = Tool.all
   end
 
   def new
@@ -38,10 +39,10 @@ class ToolsController < ApplicationController
   private
 
   def tool_params
-    params:require(:tool).permit(:name, :description, :active, :price, :categories)
+    params.require(:tool).permit(:name, :description, :active, :price_per_day, :category)
   end
 
   def set_tool
-    @tool = Tool.find(params[:id])
+      @tool = Tool.find(params[:id])
   end
 end

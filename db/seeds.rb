@@ -3,6 +3,7 @@
 #
 # Examples:
 #
+
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 if Rails.env.development?
@@ -18,5 +19,4 @@ Booking.create!(booking_cost: 10, start_date: Date.today, end_date: Date.today +
 Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 3.days, user: User.first, tool: gloves)
 Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 4.days, user: User.last, tool: grill)
 Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 5.days, user: User.last, tool: shovel)
-
 
