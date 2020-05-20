@@ -37,8 +37,8 @@
             </div>
             <% if @user.avatar.attached? %>
               <%= cl_image_tag @user.avatar.key, alt: "user-avatar", width: 200, height: 200, crop: :fill %>
-              <% else %>
-            <%= cl_image_tag "hammer.jpg", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
+            <% else %>
+              <%= cl_image_tag "https://kitt.lewagon.com/placeholder/users/random", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
             <% end %>
           </div>
         </div>
