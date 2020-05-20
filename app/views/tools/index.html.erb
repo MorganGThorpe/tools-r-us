@@ -27,11 +27,15 @@
         <% @tools.each do |tool| %>
           <div class="col-sm-6 p-0">
             <div class="overflow-hidden card mb-4 mx-0 p-0">
+              <% if tool.photo.attached? %>
+              <%= cl_image_tag tool.photo.key, alt: "tool", class: "card-img-top img-fluid overflow-hidden"%>
+              <% else %>
               <img class="card-img-top img-fluid overflow-hidden" src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" >
+              <% end %>
               <div class="py-3 pl-3 row">
                 <div class="col-8">
                   <%= link_to tool_path(tool) do %>
-                    <h5 class="mt-1 mb-0"><%= tool.name%></h5> 
+                    <h5 class="mt-1 mb-0"><%= tool.name%></h5>
                   <% end %>
                   <h6><%= tool.description %></h6>
                 </div>

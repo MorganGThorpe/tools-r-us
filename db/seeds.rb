@@ -11,12 +11,50 @@ if Rails.env.development?
   Tool.destroy_all
 end
 
-grill = Tool.create(name: "Grill", description: "Great for a sunny bbq", price_per_day: 20, category: "Garden", user: User.first)
-hammer = Tool.create(name: "Hammer", description: "Heavy tool for strong men", price_per_day: 5, category: "Garden", user: User.last)
-shovel = Tool.create(name: "Shovel", description: "Plant anything with a big shovel", price_per_day: 3, category: "Garden", user: User.first)
-gloves = Tool.create(name: "Gloves", description: "Keep your hands clean with premium gloves", price_per_day: 2, category: "Garden", user: User.last)
-Booking.create!(booking_cost: 10, start_date: Date.today, end_date: Date.today + 2.days, user: User.first, tool: hammer)
-Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 3.days, user: User.first, tool: gloves)
-Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 4.days, user: User.last, tool: grill)
-Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 5.days, user: User.last, tool: shovel)
+pictures = []
+path = Rails.root.join('app/assets/images/tools_bookings').to_s
+Dir.foreach(path) do |f|
+  pictures << File.join(path, f)
+end
+pictures = pictures.select{ |p| p.end_with?(".jpg")}
+p pictures
 
+uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
+grill = Tool.create(name: "Grill", description: "Great for a sunny bbq", price_per_day: 20, category: "Garden", user: User.first)
+grill.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
+
+uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
+hammer = Tool.create(name: "Hammer", description: "Heavy tool for strong men", price_per_day: 5, category: "Garden", user: User.last)
+hammer.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
+
+uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
+shovel = Tool.create(name: "Shovel", description: "Plant anything with a big shovel", price_per_day: 3, category: "Garden", user: User.first)
+shovel.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
+
+uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
+gloves = Tool.create(name: "Gloves", description: "Keep your hands clean with premium gloves", price_per_day: 2, category: "Garden", user: User.last)
+gloves.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
+
+uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
+chainsaw = Tool.create(name: "Gloves", description: "Cut big trees in no time", price_per_day: 2, category: "Garden", user: User.last)
+chainsaw.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
+
+uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
+nail = Tool.create(name: "Gloves", description: "Perfect for IKEA projects", price_per_day: 2, category: "Garden", user: User.last)
+nail.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
+
+uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
+booking1 = Booking.create!(booking_cost: 10, start_date: Date.today, end_date: Date.today + 2.days, user: User.first, tool: hammer)
+booking1.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
+
+uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
+booking2 = Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 3.days, user: User.first, tool: gloves)
+booking2.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
+
+uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
+booking3 = Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 4.days, user: User.last, tool: grill)
+booking3.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
+
+uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
+booking4 = Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 5.days, user: User.last, tool: shovel)
+booking4.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
