@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-sm-6 m-0 p-0 w-100">
       <form class="form-inline ">
         <div class="form-group col-8">
-          <input type="text" class="form-control w-100" id="search" placeholder="Enter the tool you want to look for here" value="The greatest shovel">
+          <input type="text" class="form-control w-100" id="search" placeholder="Enter the tool you want to look for here" value=<%= params[:tool][:name] %> >
         </div>
         <div class="form-group col-4">
           <button type="submit" class="btn btn-primary w-100">Search</button>
@@ -33,8 +33,8 @@
       <div class="row m-2" >
         <% @tools.each do |tool| %>
           <div class="col-sm-6 p-0">
-            <div class="card mb-4 mx-0 p-0">
-              <img src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" class="card-img-top img-fluid">
+            <div class="overflow-hidden card mb-4 mx-0 p-0">
+              <img class="card-img-top img-fluid overflow-hidden" src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" >
               <div class="py-3 pl-3 row">
                 <div class="col-8">
                   <h5><%= tool.name %></h5>
@@ -50,7 +50,7 @@
         <% end %>
         <div class="col-sm-6 p-0">
             <div class="card mb-4 mx-0 p-0">
-              <img src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" class="card-img-top img-fluid">
+              <img class="overflow-hidden card-img-top img-fluid" src="https://hackaday.com/wp-content/uploads/2019/03/engraved-hammer-featured.jpg?w=800" alt="image of a tool" >
               <div class="py-3 pl-3 row">
                 <div class="col-7 my-auto">
                   <h5>Placeholder Tool Name</h5>
@@ -72,4 +72,5 @@
     </div>
   </div>
 </div>
+
 
