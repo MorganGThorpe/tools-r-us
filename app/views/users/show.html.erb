@@ -38,7 +38,7 @@
               <p class="card-text"> <i class="fas fa-tools"></i> User info:</p>
               <ul class="ul_decoration">
                 <li> <i class="fas fa-upload small ml-0.5 mr-2 text-secondary"></i><strong><%= @tools.count %></strong>  <small>Tools uploaded</small></li>
-                <li> <i class="fab fa-get-pocket small mr-2 text-secondary"></i> <%=  %></li>
+                <li> <i class="fab fa-get-pocket small mr-2 text-secondary"></i> <strong> <%= @bookings.count %> </strong></li>
               </ul>
 
             </div>
@@ -54,7 +54,7 @@
           </div>
         </div>
 
-        <div class="card shadow overflow-hidden ">
+        <div class="card shadow-sm overflow-hidden ">
           <div class="card-header d-grid align-content-start flex-wrap">
             <h4 class="m-2">Upcoming bookings</h4>
           </div>
@@ -63,8 +63,7 @@
 
               <div class="bookings-card mx-2 mb-4 shadow-sm rounded-lg overflow-hidden">
                 <% if booking.tool.photo.attached? %>
-                  <%= cl_image_tag booking.tool.photo.key, alt: "tool", width: 360, height: 240, class: "img_fit" %>
-
+                  <%= cl_image_tag booking.tool.photo.key, alt: "tool", width: 360, height: 240, class: "img_fit shadow-sm" %>
                 <% else %>
                   <%= image_tag "hammer2.jpg", alt: "alttext", width: 360, height: 240, class: "img_fit" %>
                 <% end %>
@@ -82,8 +81,14 @@
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="mt-1 mb-0"> <i class="fas fa-toolbox mr-2"></i> <strong> <%= booking.tool.name %> </strong> </p>
-                    <%= link_to edit_user_registration_path do %>
-                     <small>  <p class="small mt-2 ml-2 align-items-center">edit <i class="far fa-edit edit_icon_user mt-2"></i></p></small>
+
+
+
+                    <%= link_to booking_path() do %>
+
+
+
+                    <small>  <p class="small mt-2 ml-2 align-items-center">edit <i class="far fa-edit edit_icon_user mt-2"></i></p></small>
                     <% end %>
                   </div>
                 </div>
@@ -95,7 +100,7 @@
     </div>
     <div class="tab-pane fade red-background <%= 'active show' if params[:tools].present? %>" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
       <div class="tools">
-        <div class="card" >
+        <div class="card shadow-sm" >
           <div class="profile-text">
             <div class="card-header d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
@@ -120,7 +125,7 @@
               <p class="card-text"> <i class="fas fa-tools"></i> User info:</p>
               <ul class="ul_decoration">
                 <li> <i class="fas fa-upload small ml-0.5 mr-2 text-secondary"></i><strong><%= @tools.count %></strong>  <small>Tools uploaded</small></li>
-                <li> <i class="fab fa-get-pocket small mr-2 text-secondary"></i> <%=  %></li>
+                <li> <i class="fab fa-get-pocket small mr-2 text-secondary"></i> <strong> <%= @bookings.count %> </strong> </li>
               </ul>
 
             </div>
@@ -133,7 +138,7 @@
         </div>
 
 
-        <div class="card mt-4">
+        <div class="card mt-4 shadow-sm">
           <div class="card-header d-flex align-items-center">
             <h4 class="m-2">Listed tools</h4>
           </div>
@@ -160,7 +165,7 @@
                   <p class="mb-1"> <i class="fas fa-check text-primary mr-3"></i><%= tool.active %> </p>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="mt-1 mb-0"><i class="fas fa-tools mr-2"></i> category: <strong> <%= tool.category %> </strong>  </p>
-                    <%= link_to edit_user_registration_path do %>
+                    <%= link_to edit_tool_path(tool) do %>
                      <small>  <p class="small mt-2 ml-2 align-items-center">edit <i class="far fa-edit edit_icon_user mt-3"></i></p></small>
                     <% end %>
                   </div>
