@@ -38,7 +38,7 @@
             <% if @user.avatar.attached? %>
               <%= cl_image_tag @user.avatar.key, alt: "user-avatar", width: 200, height: 200, crop: :fill %>
             <% else %>
-              <%= cl_image_tag "https://kitt.lewagon.com/placeholder/users/random", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
+              <%= image_tag "avatar-default.png", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
             <% end %>
           </div>
         </div>
@@ -50,8 +50,8 @@
           <div class="card-body">
             <% @bookings.each do |booking| %>
               <div class="bookings-card">
-                <% if booking.photo.attached? %>
-                  <%= cl_image_tag booking.photo.key, alt: "tool", width: 300, height: 200%>
+                <% if booking.tool.photo.attached? %>
+                  <%= cl_image_tag booking.tool.photo.key, alt: "tool", width: 300, height: 200%>
                 <% else %>
                   <%= image_tag "hammer2.jpg", alt: "alttext", width: 300, height: 200 %>
                 <% end %>

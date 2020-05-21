@@ -43,7 +43,7 @@
                   <% if tool.user.avatar.attached? %>
                     <%= cl_image_tag tool.user.avatar.key, class:'rounded-circle w-50 mb-3' %>
                   <% else %>
-                    <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", class:'rounded-circle w-50 mb-3' %>
+                    <%= image_tag "avatar-default.png", class:'rounded-circle w-50 mb-3' %>
                   <% end %>
                   <p>£ <%= tool.price_per_day %>/day</p>
                 </div>

@@ -29,14 +29,14 @@
               <p>/ day</p>
             </div>
           </div>
-          <button type="button" class="btn btn-primary btn-round-lg">Rent This Tool</button>
+          <%= link_to "Rent This Tool", new_tool_booking_path(@tool), class: "btn btn-primary btn-round-lg" %>
           <hr/>
           <span class="text-muted ml-4">About the Seller</span>
           <div class="media">
             <% if @tool.user.avatar.attached? %>
               <%= cl_image_tag @tool.user.avatar.key, height: 90, width: 90, crop: :fill, class:"mr-3 rounded" %>
             <% else %>
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", height: 90, width: 90, crop: :fill, class:"mr-3 rounded" %>
+              <%= image_tag "avatar-default.png", height: 90, width: 90, crop: :fill, class:"mr-3 rounded" %>
             <% end %>
             <div class="media-body">
               <%= link_to user_path(@tool.user) do %>
