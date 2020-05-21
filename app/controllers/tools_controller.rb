@@ -32,8 +32,11 @@ class ToolsController < ApplicationController
   end
 
   def update
-    @tool.update(tool_params)
-    redirect_to tool_path(@tool)
+    if @tool.update(tool_params)
+      redirect_to tool_path(@tool)
+    else
+      render :edit
+    end
   end
 
   def destroy
