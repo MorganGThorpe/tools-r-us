@@ -1,5 +1,8 @@
 class Review < ApplicationRecord
   belongs_to :tool
 
-  validates :rating, presence: true
+  RATINGS = [1, 2, 3, 4, 5]
+
+  validates :content, presence: true
+  validates :rating, inclusion: { in: RATINGS}
 end

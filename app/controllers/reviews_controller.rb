@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
   private
 
   def set_tool
-    @tool = Tool.find(params[:booking_id])
+    @tool = Tool.find(params[:tool_id])
   end
 
   def review_params
