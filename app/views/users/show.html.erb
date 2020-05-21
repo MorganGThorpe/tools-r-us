@@ -21,7 +21,7 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <p>Beirut</p>
                 <div class="rating d-flex">
-                  <p>          ★ 4.65 (8)</p> 
+                  <p>          ★ 4.65 (8)</p>
                 </div>
               </div>
             </div>
@@ -37,8 +37,8 @@
             </div>
             <% if @user.avatar.attached? %>
               <%= cl_image_tag @user.avatar.key, alt: "user-avatar", width: 200, height: 200, crop: :fill %>
-              <% else %>
-            <%= cl_image_tag "hammer.jpg", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
+            <% else %>
+              <%= cl_image_tag "https://kitt.lewagon.com/placeholder/users/random", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
             <% end %>
           </div>
         </div>
@@ -50,7 +50,11 @@
           <div class="card-body">
             <% @bookings.each do |booking| %>
               <div class="bookings-card">
-                <%= image_tag "tool.jpg", alt: "alttext", width: 300, height: 200 %>
+                <% if booking.photo.attached? %>
+                  <%= cl_image_tag booking.photo.key, alt: "tool", width: 300, height: 200%>
+                <% else %>
+                  <%= image_tag "hammer2.jpg", alt: "alttext", width: 300, height: 200 %>
+                <% end %>
                 <div class="card-text">
                   <p><%= booking.booking_cost %> </p>
                   <p><%= booking.start_date.strftime("%A, %b %d") %> </p>
@@ -74,7 +78,7 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <p>Beirut</p>
                 <div class="rating d-flex">
-                  <p>★ 4.65 (8)</p> 
+                  <p>★ 4.65 (8)</p>
                 </div>
               </div>
             </div>
@@ -91,7 +95,7 @@
             <% if @user.avatar.attached? %>
               <%= cl_image_tag @user.avatar.key, alt: "user-avatar", width: 200, height: 200, crop: :fill %>
               <% else %>
-            <%= cl_image_tag "hammer.jpg", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
+            <%= image_tag "hammer.jpg", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
             <% end %>
           </div>
         </div>
@@ -104,7 +108,11 @@
 
             <% @tools.each do |tool| %>
               <div class="bookings-card">
-                <%= image_tag "hammer2.jpg", alt: "alttext", width: 300, height: 200 %>
+                <% if tool.photo.attached? %>
+                  <%= cl_image_tag tool.photo.key, alt: "tool", width: 300, height: 200%>
+                <% else %>
+                  <%= image_tag "hammer2.jpg", alt: "alttext", width: 300, height: 200 %>
+                <% end %>
                 <div class="card-text">
                   <p><%= tool.name %> </p>
                   <p><%= tool.description %> </p>
@@ -121,7 +129,7 @@
   </div>
 </div>
 
-
+<!-- tool.photo.key -->
 
 
 

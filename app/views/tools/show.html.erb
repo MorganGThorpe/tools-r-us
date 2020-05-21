@@ -2,13 +2,13 @@
   <div class="product_details">
     <h1><%= @tool.name.upcase %></h1>
     <div class="d-inline-block">
-      <p>★ 4.55 (12)  </p> 
+      <p>★ 4.55 (12)  </p>
     </div>
     <div class="d-inline-block">
       <p>·  <u>Stoke Newington, London, UK</u></p>
     </div>
     <div class="d-inline-block ml-3 mt-0">
-      <p class="badge badge-primary mt-0"><%= @tool.category %></p>  
+      <p class="badge badge-primary mt-0"><%= @tool.category %></p>
     </div>
   </div>
   <div class= "row">
@@ -23,7 +23,7 @@
         <div class="profile-card card w-100">
           <div id="price" class="container d-flex profile-justify-content-center mt-5">
             <div class="d-inline-block">
-              <h1>£<%= @tool.price_per_day %></h1> 
+              <h1>£<%= @tool.price_per_day %></h1>
             </div>
             <div class="d-inline-block mt-4">
               <p>/ day</p>
@@ -33,10 +33,14 @@
           <hr/>
           <span class="text-muted ml-4">About the Seller</span>
           <div class="media">
-            <%= cl_image_tag @tool.user.avatar.key, height: 90, width: 90, crop: :fill, class:"mr-3 rounded" %>
+            <% if @tool.user.avatar.attached? %>
+              <%= cl_image_tag @tool.user.avatar.key, height: 90, width: 90, crop: :fill, class:"mr-3 rounded" %>
+            <% else %>
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", height: 90, width: 90, crop: :fill, class:"mr-3 rounded" %>
+            <% end %>
             <div class="media-body">
               <%= link_to user_path(@tool.user) do %>
-                <h5 class="mt-1 mb-0"><%= @tool.user.first_name.capitalize%> <%=@tool.user.last_name.capitalize%></h5> 
+                <h5 class="mt-1 mb-0"><%= @tool.user.first_name&.capitalize%> <%=@tool.user.last_name&.capitalize%></h5>
               <% end %>
               <p class="pt-1 mb-1">London, UK</p>
               <span class="text-muted">Member Since: <%= @tool.user.created_at.strftime("%d/%m/%Y")%></span>
