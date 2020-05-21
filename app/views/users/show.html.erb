@@ -42,11 +42,12 @@
               </ul>
 
             </div>
+
             <div class="overflow-hidden rounded-lg shadow-sm">
               <% if @user.avatar.attached? %>
                 <%= cl_image_tag @user.avatar.key, alt: "user-avatar", width: 200, height: 200, crop: :fill %>
               <% else %>
-                <%= cl_image_tag "https://kitt.lewagon.com/placeholder/users/random", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
+                <%= image_tag "avatar-default.png", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
               <% end %>
             </div>
 
@@ -59,11 +60,13 @@
           </div>
           <div class="cards-body p-4">
             <% @bookings.each do |booking| %>
+
               <div class="bookings-card mx-2 mb-4 shadow-sm rounded-lg overflow-hidden">
                 <% if booking.tool.photo.attached? %>
                   <%= cl_image_tag booking.tool.photo.key, alt: "tool", width: 360, height: 240, class: "img_fit" %>
+
                 <% else %>
-                  <%= image_tag "hammer2.jpg", alt: "alttext", width: 300, height: 200, class: "img_fit" %>
+                  <%= image_tag "hammer2.jpg", alt: "alttext", width: 360, height: 240, class: "img_fit" %>
                 <% end %>
                 <div class="card-text m-2">
                   <div class="d-flex my-2">
@@ -128,8 +131,6 @@
             <% end %>
           </div>
         </div>
-
-
 
 
         <div class="card mt-4">
