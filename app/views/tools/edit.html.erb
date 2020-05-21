@@ -1,0 +1,2 @@
+<%= render 'shared/form-tool', submit_text: "Save changes" %>
+<%= link_to "Delete #{@tool.name}", tool_path(@tool), :class => 'btn btn-warning justify-content-center', method: :delete, data: { confirm: "Are you sure you want to remove this tool?" } %>
