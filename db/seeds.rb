@@ -43,18 +43,11 @@ uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
 nail = Tool.create(name: "Gloves", description: "Perfect for IKEA projects", price_per_day: 2, category: "Garden", user: User.last)
 nail.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
 
-uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
 booking1 = Booking.create!(booking_cost: 10, start_date: Date.today, end_date: Date.today + 2.days, user: User.first, tool: hammer)
-booking1.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
 
-uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
 booking2 = Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 3.days, user: User.first, tool: gloves)
-booking2.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
 
-uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
 booking3 = Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 4.days, user: User.last, tool: grill)
-booking3.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
 
-uploaded_file = Cloudinary::Uploader.upload(pictures.sample)
 booking4 = Booking.create!(booking_cost: 5, start_date: Date.today, end_date: Date.today + 5.days, user: User.last, tool: shovel)
-booking4.update!(photo: { io: URI.open(uploaded_file['secure_url']), filename: file, content_type: 'image/jpg' })
+
