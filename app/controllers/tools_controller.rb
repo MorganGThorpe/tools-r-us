@@ -41,8 +41,9 @@ class ToolsController < ApplicationController
   end
 
   def destroy
+    @user = current_user
     @tool.destroy
-    redirect_to tools_path
+    redirect_to user_path(@user)
   end
 
   private
