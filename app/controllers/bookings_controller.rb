@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
- 
+
   def index
     @booking = Booking.where(user_id: current_user.id)
   end
@@ -7,6 +7,7 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
   end
+
 
   def create
     @tool = Tool.find(params[:tool_id])
@@ -28,6 +29,13 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @booking = Booking.find(params[:id])
+    # if @booking.start_date && @booking.end_date
+    #   @booking.booking_cost = (@booking.start_date - @booking.end_date).to_f * @booking.tool.price_per_day
+    # else
+    #   @booking.booking_cost = 0
+    # end
+
   end
 
   def edit
