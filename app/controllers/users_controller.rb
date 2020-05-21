@@ -6,4 +6,14 @@ class UsersController < ApplicationController
     @bookings = @user.bookings
   end
 
+  def index
+    @user = User.geocoded
+
+    @markers = floats.map do |user|
+      {
+        lat: user.latitude,
+        lng: user.longitude
+      }
+  end
+
 end
