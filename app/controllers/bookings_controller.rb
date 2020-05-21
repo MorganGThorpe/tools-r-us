@@ -1,11 +1,12 @@
 class BookingsController < ApplicationController
- 
+
   def index
     @booking = Booking.where(user_id: current_user.id)
   end
 
   def new
     @booking = Booking.new
+    @tool = Tool.find(params[:tool_id])
   end
 
   def create
