@@ -1,9 +1,11 @@
 <div class= "container ">
   <div class="product_details">
     <h1><%= @tool.name.upcase %></h1>
-    <div class="d-inline-block">
-      <p>★ 4.55 (12)  </p>
-    </div>
+    <% if @tool.review %>
+      <div class="d-inline-block">
+        <p>★ <%= @tool.review.average(:rating) %> (<%= @tool.review.count %>)  </p>
+      </div>
+    <% end %>
     <div class="d-inline-block">
       <p>·  <u>Stoke Newington, London, UK</u></p>
     </div>
@@ -11,6 +13,7 @@
       <p class="badge badge-primary mt-0"><%= @tool.category %></p>
     </div>
   </div>
+
   <div class= "row">
     <div class="col-xs-12 col-lg-7">
       <% if @tool.photo.present? %>
@@ -21,7 +24,42 @@
       <div class="mt-5">
         <p><%= @tool.description %></p>
       </div>
+      <div>
+        <h3><strong>Reviews</strong></h3>
+        <ul class="list-inline">
+          <% if @tool.review %>
+          <li class="list-unstyled">
+            <div class="review-chat">
+              <% @tool.review.each do |review| %>
+                <div class="review-content">
+                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", height: 90, width: 90, crop: :fill, class:"mr-3 rounded" %>
+                  <p><%= review.content %></p>
+                  <% review.rating.times do %>
+                    <i class="fa fa-star" aria-hidden="true" ></i>
+                  <% end %>
+                  <% (5 - review.rating).times do %>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
+
+
+   
+        
+              
+              
+            
+
+
+
+
+
     <div class="col-xs-12 col-lg-5">
       <div class="container d-flex justify-content-center profile-justify-content-center">
         <div class="profile-card card w-100">

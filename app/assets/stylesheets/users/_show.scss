@@ -2,16 +2,22 @@
 // background-color: pink;
 // }
 
-.card-body {
-  display: flex;
-  justify-content: space-around;
+.cards-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 8px;
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
 }
 
 .bookings-card {
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
-  width: 300px;
+  width: 320px;
 }
 
 .card-text {
@@ -31,3 +37,22 @@
   margin: 0 0 16px 8px;
   padding-top: 0 !important;
 }
+
+.ul_decoration {
+  list-style-type: none;
+}
+
+.edit_icon_user {
+  color: #1a80fb;
+  font-size: 14px;
+  transition: .2s;
+}
+
+.small:hover {
+  .edit_icon_user{
+    color: #225CBB;
+    font-decoration: underline;
+  }
+}
+
+
