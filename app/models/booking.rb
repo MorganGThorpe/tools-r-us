@@ -1,5 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :tool
   belongs_to :user
-  has_one_attached :photo
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+
 end
