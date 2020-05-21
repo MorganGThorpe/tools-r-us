@@ -1,11 +1,10 @@
 <div class="container home_typo">
   <div class="p-5" style="margin: 6rem;">
+    <span id="typing"></span>
     <div class="card p-2 rounded shadow-sm">
        <%= render 'shared/long-search-bar' %>
     </div>
   </div>
-
-
   <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-6">
@@ -74,13 +73,14 @@
 </div>
 
 
-
-
-
-
-
-
-
-
+<script>
+  var typed = new Typed('#typing', {
+  strings: ['For my project I need','For my project I need a hammer','For my project I need a screwdriver','For my project I need a drill'],
+  typeSpeed: 40,
+  backSpeed: 75,
+  showCursor: true,
+  smartBackspace: true
+  });
+</script>
 
 
