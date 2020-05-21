@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
  
   def index
-    @booking = Booking.where(user_id: current_iser.id)
+    @booking = Booking.where(user_id: current_user.id)
   end
 
   def new
@@ -45,7 +45,7 @@ class BookingsController < ApplicationController
 
   private
 
-  def tool_params
+  def booking_params
     params.require(:booking).permit(:start_date, :end_date, :booking_cost)
   end
 
