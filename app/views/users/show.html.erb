@@ -13,15 +13,21 @@
     <div class="tab-pane fade <%= 'active show' if params[:tools].blank? %> blue-background" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
       <div class="bookings">
 
-        <div class="card" >
+        <div class="card shadow-sm mb-4" >
           <div class="profile-text">
             <div class="card-header d-flex justify-content-between align-items-center">
-              <h4><%= @user.first_name %> <%= @user.last_name %></h4>
-              <div class="location d-flex">
-                <i class="fas fa-map-marker-alt"></i>
-                <p>Beirut</p>
-                <div class="rating d-flex">
-                  <p>          ★ 4.65 (8)</p>
+              <div class="d-flex align-items-center">
+              <h4 class="m-2"><%= @user.first_name %> <%= @user.last_name %></h4>
+              <%= link_to edit_user_registration_path do %>
+                <p class="small mt-2 ml-2 align-items-center"> <i class="far fa-edit edit_icon_user mt-2"></i></p>
+              <% end %>
+              </div>
+              <div class="location d-flex align-items-center">
+                <i class="fas fa-map-marker-alt small"></i>
+                <p class="my-0 mx-1 small">Beirut</p>
+                <div class="rating d-flex align-items-center ml-2">
+                  <i class="fas fa-star small"></i>
+                  <p class="my-0 mx-1 small"> 4.65 (8)</p>
                 </div>
               </div>
             </div>
@@ -29,37 +35,54 @@
           <div class="card-body d-flex justify-content-between align-items-center">
             <div class="user-info">
               <h5 class="card-title">Passionate gardener living in Beirut</h5>
-              <p class="card-text"> Contact information:</p>
-              <ul>
-                <li> EMAIL: <%= @user.email %></li>
-                <li> NAME: <%= @user.first_name %> <%= @user.last_name %></li>
+              <p class="card-text"> <i class="fas fa-tools"></i> User info:</p>
+              <ul class="ul_decoration">
+                <li> <i class="fas fa-upload small ml-0.5 mr-2 text-secondary"></i><strong><%= @tools.count %></strong>  <small>Tools uploaded</small></li>
+                <li> <i class="fab fa-get-pocket small mr-2 text-secondary"></i> <%=  %></li>
               </ul>
+
             </div>
-            <% if @user.avatar.attached? %>
-              <%= cl_image_tag @user.avatar.key, alt: "user-avatar", width: 200, height: 200, crop: :fill %>
-            <% else %>
-              <%= cl_image_tag "https://kitt.lewagon.com/placeholder/users/random", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
-            <% end %>
+            <div class="overflow-hidden rounded-lg shadow-sm">
+              <% if @user.avatar.attached? %>
+                <%= cl_image_tag @user.avatar.key, alt: "user-avatar", width: 200, height: 200, crop: :fill %>
+              <% else %>
+                <%= cl_image_tag "https://kitt.lewagon.com/placeholder/users/random", alt: "user-avatar", width: 200, height: 200, crop: :fill %>
+              <% end %>
+            </div>
+
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-header">
-            <h4>Upcoming bookings</h4>
+        <div class="card shadow overflow-hidden ">
+          <div class="card-header d-grid align-content-start flex-wrap">
+            <h4 class="m-2">Upcoming bookings</h4>
           </div>
-          <div class="card-body">
+          <div class="cards-body p-4">
             <% @bookings.each do |booking| %>
-              <div class="bookings-card">
-                <% if booking.photo.attached? %>
-                  <%= cl_image_tag booking.photo.key, alt: "tool", width: 300, height: 200%>
+              <div class="bookings-card mx-2 mb-4 shadow-sm rounded-lg overflow-hidden">
+                <% if booking.tool.photo.attached? %>
+                  <%= cl_image_tag booking.tool.photo.key, alt: "tool", width: 360, height: 240, class: "img_fit" %>
                 <% else %>
-                  <%= image_tag "hammer2.jpg", alt: "alttext", width: 300, height: 200 %>
+                  <%= image_tag "hammer2.jpg", alt: "alttext", width: 300, height: 200, class: "img_fit" %>
                 <% end %>
-                <div class="card-text">
-                  <p><%= booking.booking_cost %> </p>
-                  <p><%= booking.start_date.strftime("%A, %b %d") %> </p>
-                  <p><%= booking.end_date.strftime("%A, %b %d") %> </p>
-                  <p><%= booking.tool.name %> </p>
+                <div class="card-text m-2">
+                  <div class="d-flex my-2">
+                    <h3> £ <%= booking.booking_cost %></h3>
+                    <p class="small mt-2 ml-1 text-secondary">/per day</p>
+                  </div>
+                  <div class="d-flex justify-content-left">
+                    <i class="far fa-calendar-alt mt-1 text-primary"></i>
+                    <div class="ml-3">
+                      <p class="mb-0"><small>from: </small> <%= booking.start_date.strftime("%A, %b %d") %> </p>
+                      <p> <small>to:</small> <%= booking.end_date.strftime("%A, %b %d") %> </p>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <p class="mt-1 mb-0"> <i class="fas fa-toolbox mr-2"></i> <strong> <%= booking.tool.name %> </strong> </p>
+                    <%= link_to edit_user_registration_path do %>
+                     <small>  <p class="small mt-2 ml-2 align-items-center">edit <i class="far fa-edit edit_icon_user mt-2"></i></p></small>
+                    <% end %>
+                  </div>
                 </div>
               </div>
             <% end %>
@@ -69,28 +92,34 @@
     </div>
     <div class="tab-pane fade red-background <%= 'active show' if params[:tools].present? %>" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
       <div class="tools">
-
         <div class="card" >
           <div class="profile-text">
             <div class="card-header d-flex justify-content-between align-items-center">
-              <h4><%= @user.first_name %> <%= @user.last_name %></h4>
-              <div class="location d-flex">
-                <i class="fas fa-map-marker-alt"></i>
-                <p>Beirut</p>
-                <div class="rating d-flex">
-                  <p>★ 4.65 (8)</p>
+              <div class="d-flex align-items-center">
+              <h4 class="m-2"><%= @user.first_name %> <%= @user.last_name %></h4>
+              <%= link_to edit_user_registration_path do %>
+                <p class="small mt-2 ml-2 align-items-center"> <i class="far fa-edit edit_icon_user mt-2"></i></p>
+              <% end %>
+              </div>
+              <div class="location d-flex align-items-center">
+                <i class="fas fa-map-marker-alt small"></i>
+                <p class="my-0 mx-1 small">Beirut</p>
+                <div class="rating d-flex align-items-center ml-2">
+                  <i class="fas fa-star small"></i>
+                  <p class="my-0 mx-1 small"> 4.65 (8)</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="card-body d-flex justify-content-between align-items-center">
-            <div class="user-info">
+           <div class="user-info">
               <h5 class="card-title">Passionate gardener living in Beirut</h5>
-              <p class="card-text"> Contact information:</p>
-              <ul>
-                <li> EMAIL: <%= @user.email %></li>
-                <li> NAME: <%= @user.first_name %> <%= @user.last_name %></li>
+              <p class="card-text"> <i class="fas fa-tools"></i> User info:</p>
+              <ul class="ul_decoration">
+                <li> <i class="fas fa-upload small ml-0.5 mr-2 text-secondary"></i><strong><%= @tools.count %></strong>  <small>Tools uploaded</small></li>
+                <li> <i class="fab fa-get-pocket small mr-2 text-secondary"></i> <%=  %></li>
               </ul>
+
             </div>
             <% if @user.avatar.attached? %>
               <%= cl_image_tag @user.avatar.key, alt: "user-avatar", width: 200, height: 200, crop: :fill %>
@@ -100,28 +129,44 @@
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-header">
-            <h4>Listed tools</h4>
-          </div>
-          <div class="card-body">
 
+
+
+        <div class="card mt-4">
+          <div class="card-header d-flex align-items-center">
+            <h4 class="m-2">Listed tools</h4>
+          </div>
+          <div class="cards-body p-4">
             <% @tools.each do |tool| %>
-              <div class="bookings-card">
+              <div class="bookings-card mx-2 mb-4 shadow-sm rounded-lg overflow-hidden">
                 <% if tool.photo.attached? %>
-                  <%= cl_image_tag tool.photo.key, alt: "tool", width: 300, height: 200%>
+                  <%= cl_image_tag tool.photo.key, alt: "tool", width: 360, height: 240%>
                 <% else %>
-                  <%= image_tag "hammer2.jpg", alt: "alttext", width: 300, height: 200 %>
+                  <%= image_tag "hammer2.jpg", alt: "alttext", width: 360, height: 240 %>
                 <% end %>
-                <div class="card-text">
-                  <p><%= tool.name %> </p>
-                  <p><%= tool.description %> </p>
-                  <p><%= tool.price_per_day %> </p>
-                  <p><%= tool.active %> </p>
-                  <p><%= tool.category %> </p>
+                <div class="card-text m-2">
+                  <div class="d-flex my-2">
+                    <h3> <i class="fas fa-toolbox mr-2"> </i> <%= tool.name %> </h3>
+                  </div>
+                  <div class="d-flex my-2">
+                    <H5> £ <%= tool.price_per_day %></H5>
+                    <p class="small ml-1 text-secondary">/per day</p>
+                  </div>
+                  <div class="d-flex justify-content-left">
+                    <i class="fas fa-wrench mt-1 text-primary"></i>
+                    <p class="ml-3"><%= tool.description %> </p>
+                  </div>
+                  <p class="mb-1"> <i class="fas fa-check text-primary mr-3"></i><%= tool.active %> </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <p class="mt-1 mb-0"><i class="fas fa-tools mr-2"></i> category: <strong> <%= tool.category %> </strong>  </p>
+                    <%= link_to edit_user_registration_path do %>
+                     <small>  <p class="small mt-2 ml-2 align-items-center">edit <i class="far fa-edit edit_icon_user mt-3"></i></p></small>
+                    <% end %>
+                  </div>
                 </div>
               </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
