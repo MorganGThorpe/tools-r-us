@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :set_bookings, only: [:show, :edit, :destroy, :update ]
 
   def index
     @booking = Booking.where(user_id: current_user.id)
@@ -25,7 +26,7 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = Booking.find(params[:id])
+    @booking
     if current_user == @booking.user
       @tool = @booking.tool
     else
@@ -34,12 +35,12 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @booking = Booking.find(params[:id])
+    @booking
     @tool = Tool.find(params[:tool_id])
   end
 
   def update
-    @booking = Booking.find(params[:id])
+    @booking
     if @booking.update(booking_params)
       redirect_to booking_path(@booking)
     else
@@ -48,8 +49,9 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+    @booking
     @booking.destroy
-    redirect to root_path
+    redirect_to tools_path
   end
 
   private
