@@ -31,7 +31,9 @@
       <h3><%= pluralize @tool.reviews.size, "review" %></h3>
       <div id="reviews">  
         <% if @tool.reviews.blank? %>
-          <p class="mt-3">Be the first to leave a review for <%= @tool.name %></p>
+          <% if current_user != @tool.user %>
+            <p class="mt-3">Be the first to leave a review for <%= @tool.name %></p>
+          <% end %>
         <% else %>
           <% @tool.reviews.each do |review| %>
             <div class="comment">
