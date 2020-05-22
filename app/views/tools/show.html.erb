@@ -1,7 +1,11 @@
 <div class= "container ">
   <div class="product_details">
     <h1><%= @tool.name.upcase %></h1>
-    <% if @tool.reviews %>
+    <% if @tool.reviews.blank? %>
+      <div class="d-inline-block">
+        <p>★ (0)  </p>
+      </div>
+    <% else %>
       <div class="d-inline-block">
         <p>★ <%= @tool.reviews.average(:rating).round(2) %> (<%= @tool.reviews.count %>)  </p>
       </div>
