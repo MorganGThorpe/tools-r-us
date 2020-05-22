@@ -2,6 +2,18 @@
 // background-color: pink;
 // }
 
+.image_form_bg{
+  opacity: 0.4;
+  width:480px;
+  position: relative;
+  margin-top: 48px
+}
+
+.delete-class-margin {
+  margin-top: 360px;
+
+}
+
 .cards-body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
