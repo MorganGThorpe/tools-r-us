@@ -8,6 +8,14 @@ class ToolsController < ApplicationController
     else
       @tools = Tool.all
     end
+    @tools = @tools.select{ |tool| tool.user.geocoded?}
+    # tool.user.geocoded?
+    @markers = @tools.map do |tool|
+        {
+          lat: tool.user.latitude,
+          lng: tool.user.longitude
+        }
+    end
   end
 
   def new

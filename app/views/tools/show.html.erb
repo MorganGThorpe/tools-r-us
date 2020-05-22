@@ -1,7 +1,7 @@
 <div class= "container ">
   <div class="product_details">
     <h1><%= @tool.name.upcase %></h1>
-    <% if @tool.reviews %>
+    <% if @tool.reviews.present? %>
       <div class="d-inline-block">
         <p>★ <%= @tool.reviews.average(:rating).round(2) %> (<%= @tool.reviews.count %>)  </p>
       </div>
@@ -23,9 +23,9 @@
 
         <p><%= @tool.description %></p>
       </div>
-      
+
       <h3><%= pluralize @tool.reviews.size, "review" %></h3>
-      <div id="reviews">  
+      <div id="reviews">
         <% if @tool.reviews.blank? %>
           Be the first to leave a review for <%= @tool.name %>
         <% else %>
