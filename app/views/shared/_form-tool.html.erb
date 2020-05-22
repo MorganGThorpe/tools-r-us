@@ -1,12 +1,27 @@
-<div class="d-flex">
-  <div class="mx-5 w-25">
-    <%=  simple_form_for(@tool) do |t| %>
-      <%= t.input :name %>
-      <%= t.input :photo, as: :file%>
-      <%= t.input :price_per_day %>
-      <%= t.input :description %>
-      <%= t.input :category, collection: Tool::CATEGORIES %>
-      <%= t.submit submit_text %>
-    <% end %>
+<div class="container d-grid">
+  <div class="row">
+    <div class="col-5 card shadow-sm p-4 mb-4" style="max-height: 460px">
+      <h2> Add new tool </h2>
+        <div class="form-inputs mt-2">
+          <%=  simple_form_for(@tool) do |t| %>
+            <%= t.input :name, label:false, placeholder:"Name of the tool",required: true, autofocus: true  %>
+            <%= t.input :photo,label:false, placeholder:"Add a photo of the tool", as: :file%>
+            <%= t.input :price_per_day, label:false, placeholder:"Price/day",required: true %>
+            <%= t.input :description, label:false, placeholder:"Description",required: true %>
+            <%= t.input :category, required: true, collection: Tool::CATEGORIES %>
+            <%= t.submit submit_text,  class: "btn btn-primary" %>
+          <% end %>
+        </div>
+    </div>
+    <div class="col-7 d-flex align-items-end flex-column bd-highlight">
+        <div class="p-2 bd-highlight">
+          <img src="/assets/logo-T.png" class="image_form_bg">
+        </div>
+
+        <div class="mt-3 bd-highlight text-right ">
+
+          <%= link_to "Home", :back, class: " small  font-weight-light "%>
+        </div>
+    </div>
   </div>
 </div>
