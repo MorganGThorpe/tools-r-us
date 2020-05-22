@@ -30,6 +30,11 @@ img {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
   width: 320px;
+  &:hover {
+  box-shadow: 1px 1px 1px 1px grey;
+  transform: scale(1.05);
+  transition: transform 0.3s ease-out;
+  }
 }
 
 .card-text {
@@ -66,5 +71,15 @@ img {
     font-decoration: underline;
   }
 }
+
+.card-booking-link {
+  text-decoration: none;
+  color: #0E0000;
+  &:hover {
+  text-decoration: none;
+  color: #0E0000;
+}
+}
+
 
 

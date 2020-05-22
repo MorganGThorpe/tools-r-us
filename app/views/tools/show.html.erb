@@ -1,7 +1,11 @@
 <div class= "container ">
   <div class="product_details">
     <h1><%= @tool.name.upcase %></h1>
-    <% if @tool.reviews.present? %>
+    <% if @tool.reviews.blank? %>
+      <div class="d-inline-block">
+        <p>★ (0)  </p>
+      </div>
+    <% else %>
       <div class="d-inline-block">
         <p>★ <%= @tool.reviews.average(:rating).round(2) %> (<%= @tool.reviews.count %>)  </p>
       </div>
@@ -27,29 +31,36 @@
       <h3><%= pluralize @tool.reviews.size, "review" %></h3>
       <div id="reviews">
         <% if @tool.reviews.blank? %>
-          Be the first to leave a review for <%= @tool.name %>
+          <% if current_user != @tool.user %>
+            <p class="mt-3">Be the first to leave a review for <%= @tool.name %></p>
+          <% end %>
         <% else %>
           <% @tool.reviews.each do |review| %>
             <div class="comment">
-              <%= cl_image_tag review.user.avatar.key, height: 90, width: 90, crop: :fill, class:"mr-3 rounded" %>
+              <%= cl_image_tag review.user.avatar.key, height: 90, width: 90, crop: :fill, class:"avatar-large" %>
               <div class="comment-content">
-                <p><small><%= review.created_at.strftime("%d/%m/%Y")%></small></p>
-                <p><%= review.content %></p>
+                <p><small><%= review.created_at.strftime("%d/%m/%Y")%>   ·   <strong><%= review.user.first_name&.capitalize%> <%=review.user.last_name&.capitalize%></strong></small></p>
+                <p id="review-<%= review.id %>"><%= review.content %></p>
               </div>
             </div>
           <% end %>
         <% end %>
       </div>
-      <%= simple_form_for([ @tool, @review ], remote: true) do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= f.input :content %>
-          <%= f.input :rating, collection: Review::RATINGS %>
+      <% if current_user != @tool.user %>
+        <div class="mt-5">
+          <h5>Leave a review</h5>
+          <%= simple_form_for([ @tool, @review ], remote: true) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+              <%= f.input :content, label:false, placeholder:"Type your review here." %>
+              <%= f.input :rating, collection: Review::RATINGS %>
+            </div>
+            <div class="form-actions">
+              <%= f.button :submit, class: "btn btn-primary" %>
+            </div>
+          <% end %>
         </div>
-        <div class="form-actions">
-          <%= f.button :submit, class: "btn btn-primary" %>
-        </div>
-    <% end %>
+      <% end %>  
     </div>
 
 
