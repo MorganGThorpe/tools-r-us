@@ -139,8 +139,11 @@
 
 
         <div class="card mt-4 shadow-sm">
-          <div class="card-header d-flex align-items-center">
+          <div class="card-header d-flex align-items-center justify-content-between">
             <h4 class="m-2">Listed tools</h4>
+            <%= link_to new_tool_path do %>
+                <span class="btn btn-primary"> add element  <small> <i class="fas fa-plus ml-1 text-white"></i> </small> </span>
+            <% end %>
           </div>
           <div class="cards-body p-4">
             <% @tools.each do |tool| %>
