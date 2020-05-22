@@ -11,8 +11,6 @@ const initMapbox = () => {
 
   if (mapElement) { // only build a map if there's a div#map to inject into
     const userLocation= JSON.parse(mapElement.dataset.user);
-    console.log(userLocation);
-    console.log(typeof userLocation);
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
