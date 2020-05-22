@@ -27,8 +27,8 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { functName } from './user';
-
+import { initTypedJs } from './components/init_typed';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  // initSelect2();
+  initTypedJs();
 });
