@@ -81,14 +81,8 @@
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="mt-1 mb-0"> <i class="fas fa-toolbox mr-2"></i> <strong> <%= booking.tool.name %> </strong> </p>
-
-
-
-                    <%= link_to booking_path() do %>
-
-
-
-                    <small>  <p class="small mt-2 ml-2 align-items-center">edit <i class="far fa-edit edit_icon_user mt-2"></i></p></small>
+                    <%= link_to edit_tool_booking_path(booking.tool, booking) do %>
+                      <small>  <p class="small mt-2 ml-2 align-items-center">edit <i class="far fa-edit edit_icon_user mt-2"></i></p></small>
                     <% end %>
                   </div>
                 </div>
