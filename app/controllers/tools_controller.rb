@@ -25,11 +25,10 @@ class ToolsController < ApplicationController
   end
 
   def show
-    @tool
+    @review = Review.new
   end
 
   def edit
-    @tool
   end
 
   def update

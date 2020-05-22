@@ -1,6 +1,6 @@
 class Tool < ApplicationRecord
   belongs_to :user
-  has_many :review
+  has_many :reviews, dependent: :destroy
 
   CATEGORIES = ["Garden", "Woodwork", "Building", "General Purpose", "Warehouse", "Motorised"]
   has_one_attached :photo

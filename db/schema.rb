@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_05_21_155537) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,7 +55,9 @@ ActiveRecord::Schema.define(version: 2020_05_21_155537) do
     t.bigint "tool_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
     t.index ["tool_id"], name: "index_reviews_on_tool_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tools", force: :cascade do |t|
@@ -90,5 +93,6 @@ ActiveRecord::Schema.define(version: 2020_05_21_155537) do
   add_foreign_key "bookings", "tools"
   add_foreign_key "bookings", "users"
   add_foreign_key "reviews", "tools"
+  add_foreign_key "reviews", "users"
   add_foreign_key "tools", "users"
 end
