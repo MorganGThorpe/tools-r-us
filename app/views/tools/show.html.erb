@@ -27,9 +27,9 @@
 
         <p><%= @tool.description %></p>
       </div>
-      
+
       <h3><%= pluralize @tool.reviews.size, "review" %></h3>
-      <div id="reviews">  
+      <div id="reviews">
         <% if @tool.reviews.blank? %>
           <% if current_user != @tool.user %>
             <p class="mt-3">Be the first to leave a review for <%= @tool.name %></p>
