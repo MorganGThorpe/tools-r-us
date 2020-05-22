@@ -29,6 +29,8 @@ class ToolsController < ApplicationController
   end
 
   def edit
+    @tool
+
   end
 
   def update
