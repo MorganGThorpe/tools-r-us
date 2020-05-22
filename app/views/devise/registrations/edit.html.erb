@@ -1,5 +1,4 @@
 <div class="container d-grid">
-
     <div class="row">
       <div class="col-5 card shadow-sm p-4 mb-4">
 
@@ -28,14 +27,19 @@
                         input_html: { autocomplete: "address" } %>
             <%= f.input :bio, label:false, placeholder:"Why are you on Toolsr'US?", required: true,
                         input_html: { autocomplete: "bio" } %>
-            <%= f.input :password,label:false, placeholder:"Password",
-                        hint: "leave it blank if you don't want to change it",
-                        required: false,
-                        input_html: { autocomplete: "new-password" } %>
-            <%= f.input :password_confirmation, label:false, placeholder:"Confirm new password",
-                        hint: "leave it blank if you don't want to change it",
-                        required: false,
-                        input_html: { autocomplete: "new-password" } %>
+            <p class= "small text-secondary mt-0"> *leave it blank if you don't want to change it</p>
+            <div class="row">
+              <div class="col m-0">
+                <%= f.input :password,label:false, placeholder:"New password",
+                              required: false,
+                              input_html: { autocomplete: "new-password" } %>
+              </div>
+              <div class="col">
+                  <%= f.input :password_confirmation, label:false, placeholder:"Confirm new password",
+                              required: false,
+                              input_html: { autocomplete: "new-password" } %>
+              </div>
+            </div>
             <%= f.input :current_password,
                         hint: "we need your current password to confirm your changes",
                         required: true,
@@ -44,7 +48,7 @@
             <%= f.input :avatar, as: :file %>
           </div>
 
-          <div class="form-actions mx-2">
+          <div class="form-actions">
             <%= f.button :submit, "Update", class:"btn btn-primary" %>
           </div>
         <% end %>
