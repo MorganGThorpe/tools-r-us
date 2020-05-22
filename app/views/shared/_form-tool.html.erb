@@ -2,11 +2,6 @@
   <div class="mx-5 w-25">
     <%=  simple_form_for(@tool) do |t| %>
       <%= t.input :name %>
-      <% if @tool.photo.present? %>
-        <%= cl_image_tag @tool.photo.key, {class: 'tool-image'}%>
-      <% else %>
-          <img src="https://picsum.photos/id/1062/350/200/?grayscale&blur=2" alt="Pug in a blanket" class= "tool-image">
-      <% end %>
       <%= t.input :photo, as: :file%>
       <%= t.input :price_per_day %>
       <%= t.input :description %>

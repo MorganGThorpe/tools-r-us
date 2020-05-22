@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :set_bookings, only: [:show, :edit, :destroy, :update ]
 
   def index
     @booking = Booking.where(user_id: current_user.id)
@@ -9,17 +10,13 @@ class BookingsController < ApplicationController
     @tool = Tool.find(params[:tool_id])
   end
 
+
   def create
     @tool = Tool.find(params[:tool_id])
     @booking = Booking.new(booking_params)
     @booking.tool = @tool
+    @booking_cost = @booking.booking_cost
     @booking.user = current_user
-
-    if @booking.start_date && @booking.end_date
-      @booking.booking_cost = (@booking.start_date - @booking.end_date).to_f * @booking.tool.price_per_day
-    else
-      @booking.booking_cost = 0
-    end
 
     if @booking.save
       redirect_to booking_path(@booking)
@@ -29,19 +26,32 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @booking
+    if current_user == @booking.user
+      @tool = @booking.tool
+    else
+      redirect_to tool_path(@tool), notice: "Access denied"
+    end
   end
 
   def edit
+    @booking
+    @tool = Tool.find(params[:tool_id])
   end
 
   def update
-    @booking.update(booking_params)
-    redirect_to booking_path(@booking)
+    @booking
+    if @booking.update(booking_params)
+      redirect_to booking_path(@booking)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @booking
     @booking.destroy
-    redirect to root_path
+    redirect_to tools_path
   end
 
   private

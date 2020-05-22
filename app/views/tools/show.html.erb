@@ -16,7 +16,11 @@
 
   <div class= "row">
     <div class="col-xs-12 col-lg-7">
-      <img src="https://images.ctfassets.net/zma7thmmcinb/7lj9qlwKbgzj7avuaYYWj2/5da67aa7854a4c401f63af502227f572/choosing-the-right-garden-hoe-pv.jpg" alt="Garden Hoe" width="100%" height="400">
+      <% if @tool.photo.present? %>
+        <%= cl_image_tag @tool.photo.key, height:400, width: "100%", class: "rounded" %>
+      <% else %>
+          <img src="https://images.ctfassets.net/zma7thmmcinb/7lj9qlwKbgzj7avuaYYWj2/5da67aa7854a4c401f63af502227f572/choosing-the-right-garden-hoe-pv.jpg" alt="Garden Hoe" width=100% height="400">
+      <% end %>
       <div class="mt-5">
         <p><%= @tool.description %></p>
       </div>
@@ -44,16 +48,6 @@
         </ul>
       </div>
     </div>
-
-
-   
-        
-              
-              
-            
-
-
-
 
 
     <div class="col-xs-12 col-lg-5">
@@ -96,3 +90,4 @@
     </div>
   </div>
 </div>
+
