@@ -1,9 +1,9 @@
 <div class= "container ">
   <div class="product_details">
     <h1><%= @tool.name.upcase %></h1>
-    <% if @tool.review %>
+    <% if @tool.reviews %>
       <div class="d-inline-block">
-        <p>★ <%= @tool.review.average(:rating) %> (<%= @tool.review.count %>)  </p>
+        <p>★ <%= @tool.reviews.average(:rating).round(2) %> (<%= @tool.reviews.count %>)  </p>
       </div>
     <% end %>
     <div class="d-inline-block">
@@ -17,44 +17,38 @@
   <div class= "row">
     <div class="col-xs-12 col-lg-7">
       <img src="https://images.ctfassets.net/zma7thmmcinb/7lj9qlwKbgzj7avuaYYWj2/5da67aa7854a4c401f63af502227f572/choosing-the-right-garden-hoe-pv.jpg" alt="Garden Hoe" width="100%" height="400">
-      <div class="mt-5">
+      <div class="my-5">
+        <h3>Tool Description</h3>
         <p><%= @tool.description %></p>
       </div>
-      <div>
-        <h3><strong>Reviews</strong></h3>
-        <ul class="list-inline">
-          <% if @tool.review %>
-          <li class="list-unstyled">
-            <div class="review-chat">
-              <% @tool.review.each do |review| %>
-                <div class="review-content">
-                  <%= image_tag "https://kitt.lewagon.com/placeholder/users/random", height: 90, width: 90, crop: :fill, class:"mr-3 rounded" %>
-                  <p><%= review.content %></p>
-                  <% review.rating.times do %>
-                    <i class="fa fa-star" aria-hidden="true" ></i>
-                  <% end %>
-                  <% (5 - review.rating).times do %>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                  <% end %>
-                </div>
-              <% end %>
+      
+      <h3><%= pluralize @tool.reviews.size, "review" %></h3>
+      <div id="reviews">  
+        <% if @tool.reviews.blank? %>
+          Be the first to leave a review for <%= @tool.name %>
+        <% else %>
+          <% @tool.reviews.each do |review| %>
+            <div class="comment">
+              <%= cl_image_tag review.user.avatar.key, height: 90, width: 90, crop: :fill, class:"mr-3 rounded" %>
+              <div class="comment-content">
+                <p><small><%= review.created_at.strftime("%d/%m/%Y")%></small></p>
+                <p><%= review.content %></p>
+              </div>
             </div>
-          </li>
           <% end %>
-        </ul>
+        <% end %>
       </div>
+      <%= simple_form_for([ @tool, @review ], remote: true) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :content %>
+          <%= f.input :rating, collection: Review::RATINGS %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, class: "btn btn-primary" %>
+        </div>
+    <% end %>
     </div>
-
-
-   
-        
-              
-              
-            
-
-
-
-
 
     <div class="col-xs-12 col-lg-5">
       <div class="container d-flex justify-content-center profile-justify-content-center">
