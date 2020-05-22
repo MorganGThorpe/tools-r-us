@@ -20,16 +20,19 @@
 
   <div class= "row">
     <div class="col-xs-12 col-lg-7">
-
+    <% if @tool.photo.present? %>
+      <%= cl_image_tag @tool.photo.key, height:400, width: "100%", class: "rounded" %>
+    <% else %>
       <img src="https://images.ctfassets.net/zma7thmmcinb/7lj9qlwKbgzj7avuaYYWj2/5da67aa7854a4c401f63af502227f572/choosing-the-right-garden-hoe-pv.jpg" alt="Garden Hoe" width="100%" height="400">
+    <% end %>
       <div class="my-5">
         <h3>Tool Description</h3>
 
         <p><%= @tool.description %></p>
       </div>
-      
+
       <h3><%= pluralize @tool.reviews.size, "review" %></h3>
-      <div id="reviews">  
+      <div id="reviews">
         <% if @tool.reviews.blank? %>
           <p class="mt-3">Be the first to leave a review for <%= @tool.name %></p>
         <% else %>
@@ -58,7 +61,7 @@
             </div>
           <% end %>
         </div>
-      <% end %>  
+      <% end %>
     </div>
 
 

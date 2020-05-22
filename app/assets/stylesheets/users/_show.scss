@@ -30,10 +30,10 @@ img {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
   width: 320px;
+  transition: transform 0.3s ease-out;
   &:hover {
   box-shadow: 1px 1px 1px 1px grey;
   transform: scale(1.05);
-  transition: transform 0.3s ease-out;
   }
 }
 
@@ -81,5 +81,14 @@ img {
 }
 }
 
+.minimum-width {
+  min-width: 200px;
+}
+
+.bio {
+  line-height: 1.3px;
+  font-weight: 300;
+  max-width: 500px;
+}
 
 
