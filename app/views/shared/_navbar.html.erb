@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon shadow-sm">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon shadow-sm ">
   <div class="container">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "T'us.png" %>
@@ -11,6 +11,9 @@
 
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <%= link_to new_tool_path do %>
+        <span class="btn btn-link btn-sm mr-2"> add tool  <small> <i class="fas fa-plus ml-1 text-primary"></i> </small> </span>
+      <% end %>
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
