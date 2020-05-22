@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     
     if @review.save
-      redirect_to tool_path(@tool)
+      redirect_to tool_path(@tool, anchor: "review-#{@review.id}")
     else
       render 'tools/show'
     end
