@@ -13,7 +13,8 @@ class ToolsController < ApplicationController
     @markers = @tools.map do |tool|
         {
           lat: tool.user.latitude,
-          lng: tool.user.longitude
+          lng: tool.user.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { tool: tool })
         }
     end
   end
