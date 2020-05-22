@@ -14,6 +14,13 @@ class UsersController < ApplicationController
         lat: user.latitude,
         lng: user.longitude
       }
+    end
   end
+
+  private
+
+  # def user_params
+  #   params.require(:user).permit(:address)
+  # end
 
 end
